@@ -77,7 +77,7 @@ import org.junit.platform.commons.util.ToStringBuilder;
  */
 class TempDirectory implements BeforeAllCallback, BeforeEachCallback, ParameterResolver {
 
-private static final String MUST_BE_ANNOTATED_WITH_TEMPDIR = " must be annotated with @TempDir";
+	private static final String MUST_BE_ANNOTATED_WITH_TEMPDIR = " must be annotated with @TempDir";
 
 	static final Namespace NAMESPACE = Namespace.create(TempDirectory.class);
 	private static final String KEY = "temp.dir";
@@ -176,8 +176,8 @@ private static final String MUST_BE_ANNOTATED_WITH_TEMPDIR = " must be annotated
 	}
 
 	private CleanupMode determineCleanupModeForParameter(ParameterContext parameterContext) {
-		TempDir tempDir = parameterContext.findAnnotation(TempDir.class).orElseThrow(() -> new JUnitException(
-			"Parameter " + parameterContext.getParameter() + MUST_BE_ANNOTATED_WITH_TEMPDIR));
+		TempDir tempDir = parameterContext.findAnnotation(TempDir.class).orElseThrow(
+			() -> new JUnitException("Parameter " + parameterContext.getParameter() + MUST_BE_ANNOTATED_WITH_TEMPDIR));
 		return determineCleanupMode(tempDir);
 	}
 
@@ -203,8 +203,8 @@ private static final String MUST_BE_ANNOTATED_WITH_TEMPDIR = " must be annotated
 	}
 
 	private TempDirFactory determineTempDirFactoryForParameter(ParameterContext parameterContext, Scope scope) {
-		TempDir tempDir = parameterContext.findAnnotation(TempDir.class).orElseThrow(() -> new JUnitException(
-			"Parameter " + parameterContext.getParameter() + MUST_BE_ANNOTATED_WITH_TEMPDIR));
+		TempDir tempDir = parameterContext.findAnnotation(TempDir.class).orElseThrow(
+			() -> new JUnitException("Parameter " + parameterContext.getParameter() + MUST_BE_ANNOTATED_WITH_TEMPDIR));
 		return determineTempDirFactory(tempDir, scope);
 	}
 

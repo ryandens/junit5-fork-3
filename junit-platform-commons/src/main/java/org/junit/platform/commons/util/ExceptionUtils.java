@@ -40,7 +40,7 @@ import org.apiguardian.api.API;
 @API(status = INTERNAL, since = "1.0")
 public final class ExceptionUtils {
 
-private static final String THROWABLE_MUST_NOT_BE_NULL = "Throwable must not be null";
+	private static final String THROWABLE_MUST_NOT_BE_NULL = "Throwable must not be null";
 
 	private static final String JUNIT_PLATFORM_LAUNCHER_PACKAGE_PREFIX = "org.junit.platform.launcher.";
 

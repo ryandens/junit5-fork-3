@@ -52,23 +52,23 @@ import org.junit.platform.engine.UniqueId;
 @API(status = STABLE, since = "1.0")
 public final class DiscoverySelectors {
 
-private static final String NESTED_CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Nested class name must not be null or blank";
+	private static final String NESTED_CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Nested class name must not be null or blank";
 
-private static final String ENCLOSING_CLASS_NAMES_MUST_NOT_BE_NULL_OR_EMPTY = "Enclosing class names must not be null or empty";
+	private static final String ENCLOSING_CLASS_NAMES_MUST_NOT_BE_NULL_OR_EMPTY = "Enclosing class names must not be null or empty";
 
-private static final String NESTED_CLASS_MUST_NOT_BE_NULL = "Nested class must not be null";
+	private static final String NESTED_CLASS_MUST_NOT_BE_NULL = "Nested class must not be null";
 
-private static final String ENCLOSING_CLASSES_MUST_NOT_BE_NULL_OR_EMPTY = "Enclosing classes must not be null or empty";
+	private static final String ENCLOSING_CLASSES_MUST_NOT_BE_NULL_OR_EMPTY = "Enclosing classes must not be null or empty";
 
-private static final String PARAMETER_TYPES_ARRAY_MUST_NOT_CONTAIN_NULL_ELEMENTS = "Parameter types array must not contain null elements";
+	private static final String PARAMETER_TYPES_ARRAY_MUST_NOT_CONTAIN_NULL_ELEMENTS = "Parameter types array must not contain null elements";
 
-private static final String PARAMETER_TYPES_ARRAY_MUST_NOT_BE_NULL = "Parameter types array must not be null";
+	private static final String PARAMETER_TYPES_ARRAY_MUST_NOT_BE_NULL = "Parameter types array must not be null";
 
-private static final String METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Method name must not be null or blank";
+	private static final String METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Method name must not be null or blank";
 
-private static final String CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Class name must not be null or blank";
+	private static final String CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Class name must not be null or blank";
 
-private static final String CLASS_MUST_NOT_BE_NULL = "Class must not be null";
+	private static final String CLASS_MUST_NOT_BE_NULL = "Class must not be null";
 
 	private DiscoverySelectors() {
 		/* no-op */
