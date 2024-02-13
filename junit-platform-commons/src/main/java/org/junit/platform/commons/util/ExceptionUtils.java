@@ -40,6 +40,8 @@ import org.apiguardian.api.API;
 @API(status = INTERNAL, since = "1.0")
 public final class ExceptionUtils {
 
+	private static final String THROWABLE_MUST_NOT_BE_NULL = "Throwable must not be null";
+
 	private static final String JUNIT_PLATFORM_LAUNCHER_PACKAGE_PREFIX = "org.junit.platform.launcher.";
 
 	private static final Predicate<String> STACK_TRACE_ELEMENT_FILTER = ClassNamePatternFilterUtils //
@@ -70,7 +72,7 @@ public final class ExceptionUtils {
 	 * method to be supplied as the operand in a {@code throw} statement
 	 */
 	public static RuntimeException throwAsUncheckedException(Throwable t) {
-		Preconditions.notNull(t, "Throwable must not be null");
+		Preconditions.notNull(t, THROWABLE_MUST_NOT_BE_NULL);
 		ExceptionUtils.throwAs(t);
 
 		// Appeasing the compiler: the following line will never be executed.
@@ -86,7 +88,7 @@ public final class ExceptionUtils {
 	 * Read the stacktrace of the supplied {@link Throwable} into a String.
 	 */
 	public static String readStackTrace(Throwable throwable) {
-		Preconditions.notNull(throwable, "Throwable must not be null");
+		Preconditions.notNull(throwable, THROWABLE_MUST_NOT_BE_NULL);
 		StringWriter stringWriter = new StringWriter();
 		try (PrintWriter printWriter = new PrintWriter(stringWriter)) {
 			throwable.printStackTrace(printWriter);
@@ -113,7 +115,7 @@ public final class ExceptionUtils {
 	 */
 	@API(status = INTERNAL, since = "1.10")
 	public static void pruneStackTrace(Throwable throwable, List<String> classNames) {
-		Preconditions.notNull(throwable, "Throwable must not be null");
+		Preconditions.notNull(throwable, THROWABLE_MUST_NOT_BE_NULL);
 		Preconditions.notNull(classNames, "List of class names must not be null");
 
 		List<StackTraceElement> stackTrace = Arrays.asList(throwable.getStackTrace());
@@ -154,7 +156,7 @@ public final class ExceptionUtils {
 	 */
 	@API(status = INTERNAL, since = "1.10")
 	public static List<Throwable> findNestedThrowables(Throwable rootThrowable) {
-		Preconditions.notNull(rootThrowable, "Throwable must not be null");
+		Preconditions.notNull(rootThrowable, THROWABLE_MUST_NOT_BE_NULL);
 
 		Set<Throwable> visited = new LinkedHashSet<>();
 		Deque<Throwable> toVisit = new ArrayDeque<>();

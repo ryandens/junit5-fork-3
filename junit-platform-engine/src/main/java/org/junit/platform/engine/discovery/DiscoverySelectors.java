@@ -52,6 +52,24 @@ import org.junit.platform.engine.UniqueId;
 @API(status = STABLE, since = "1.0")
 public final class DiscoverySelectors {
 
+	private static final String NESTED_CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Nested class name must not be null or blank";
+
+	private static final String ENCLOSING_CLASS_NAMES_MUST_NOT_BE_NULL_OR_EMPTY = "Enclosing class names must not be null or empty";
+
+	private static final String NESTED_CLASS_MUST_NOT_BE_NULL = "Nested class must not be null";
+
+	private static final String ENCLOSING_CLASSES_MUST_NOT_BE_NULL_OR_EMPTY = "Enclosing classes must not be null or empty";
+
+	private static final String PARAMETER_TYPES_ARRAY_MUST_NOT_CONTAIN_NULL_ELEMENTS = "Parameter types array must not contain null elements";
+
+	private static final String PARAMETER_TYPES_ARRAY_MUST_NOT_BE_NULL = "Parameter types array must not be null";
+
+	private static final String METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Method name must not be null or blank";
+
+	private static final String CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK = "Class name must not be null or blank";
+
+	private static final String CLASS_MUST_NOT_BE_NULL = "Class must not be null";
+
 	private DiscoverySelectors() {
 		/* no-op */
 	}
@@ -377,7 +395,7 @@ public final class DiscoverySelectors {
 	 * @see ClassSelector
 	 */
 	public static ClassSelector selectClass(Class<?> clazz) {
-		Preconditions.notNull(clazz, "Class must not be null");
+		Preconditions.notNull(clazz, CLASS_MUST_NOT_BE_NULL);
 		return new ClassSelector(clazz);
 	}
 
@@ -404,7 +422,7 @@ public final class DiscoverySelectors {
 	 */
 	@API(status = EXPERIMENTAL, since = "1.10")
 	public static ClassSelector selectClass(ClassLoader classLoader, String className) {
-		Preconditions.notBlank(className, "Class name must not be null or blank");
+		Preconditions.notBlank(className, CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK);
 		return new ClassSelector(classLoader, className);
 	}
 
@@ -549,8 +567,8 @@ public final class DiscoverySelectors {
 	@API(status = EXPERIMENTAL, since = "1.10")
 	public static MethodSelector selectMethod(ClassLoader classLoader, String className, String methodName,
 			String parameterTypeNames) {
-		Preconditions.notBlank(className, "Class name must not be null or blank");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
+		Preconditions.notBlank(className, CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
 		Preconditions.notNull(parameterTypeNames, "Parameter type names must not be null");
 		return new MethodSelector(classLoader, className, methodName, parameterTypeNames.trim());
 	}
@@ -584,8 +602,8 @@ public final class DiscoverySelectors {
 	 * @see MethodSelector
 	 */
 	public static MethodSelector selectMethod(Class<?> javaClass, String methodName, String parameterTypeNames) {
-		Preconditions.notNull(javaClass, "Class must not be null");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
+		Preconditions.notNull(javaClass, CLASS_MUST_NOT_BE_NULL);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
 		Preconditions.notNull(parameterTypeNames, "Parameter type names must not be null");
 		return new MethodSelector(javaClass, methodName, parameterTypeNames.trim());
 	}
@@ -604,10 +622,10 @@ public final class DiscoverySelectors {
 	 */
 	@API(status = EXPERIMENTAL, since = "1.10")
 	public static MethodSelector selectMethod(String className, String methodName, Class<?>... parameterTypes) {
-		Preconditions.notBlank(className, "Class name must not be null or blank");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
-		Preconditions.notNull(parameterTypes, "Parameter types array must not be null");
-		Preconditions.containsNoNullElements(parameterTypes, "Parameter types array must not contain null elements");
+		Preconditions.notBlank(className, CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notNull(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_BE_NULL);
+		Preconditions.containsNoNullElements(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_CONTAIN_NULL_ELEMENTS);
 		return new MethodSelector((ClassLoader) null, className, methodName, parameterTypes);
 	}
 
@@ -625,10 +643,10 @@ public final class DiscoverySelectors {
 	 */
 	@API(status = EXPERIMENTAL, since = "1.10")
 	public static MethodSelector selectMethod(Class<?> javaClass, String methodName, Class<?>... parameterTypes) {
-		Preconditions.notNull(javaClass, "Class must not be null");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
-		Preconditions.notNull(parameterTypes, "Parameter types array must not be null");
-		Preconditions.containsNoNullElements(parameterTypes, "Parameter types array must not contain null elements");
+		Preconditions.notNull(javaClass, CLASS_MUST_NOT_BE_NULL);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notNull(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_BE_NULL);
+		Preconditions.containsNoNullElements(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_CONTAIN_NULL_ELEMENTS);
 		return new MethodSelector(javaClass, methodName, parameterTypes);
 	}
 
@@ -641,7 +659,7 @@ public final class DiscoverySelectors {
 	 * @see MethodSelector
 	 */
 	public static MethodSelector selectMethod(Class<?> javaClass, Method method) {
-		Preconditions.notNull(javaClass, "Class must not be null");
+		Preconditions.notNull(javaClass, CLASS_MUST_NOT_BE_NULL);
 		Preconditions.notNull(method, "Method must not be null");
 		return new MethodSelector(javaClass, method);
 	}
@@ -657,8 +675,8 @@ public final class DiscoverySelectors {
 	 */
 	@API(status = STABLE, since = "1.6")
 	public static NestedClassSelector selectNestedClass(List<Class<?>> enclosingClasses, Class<?> nestedClass) {
-		Preconditions.notEmpty(enclosingClasses, "Enclosing classes must not be null or empty");
-		Preconditions.notNull(nestedClass, "Nested class must not be null");
+		Preconditions.notEmpty(enclosingClasses, ENCLOSING_CLASSES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notNull(nestedClass, NESTED_CLASS_MUST_NOT_BE_NULL);
 		return new NestedClassSelector(enclosingClasses, nestedClass);
 	}
 
@@ -690,8 +708,8 @@ public final class DiscoverySelectors {
 	@API(status = EXPERIMENTAL, since = "1.10")
 	public static NestedClassSelector selectNestedClass(ClassLoader classLoader, List<String> enclosingClassNames,
 			String nestedClassName) {
-		Preconditions.notEmpty(enclosingClassNames, "Enclosing class names must not be null or empty");
-		Preconditions.notBlank(nestedClassName, "Nested class name must not be null or blank");
+		Preconditions.notEmpty(enclosingClassNames, ENCLOSING_CLASS_NAMES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notBlank(nestedClassName, NESTED_CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK);
 		return new NestedClassSelector(classLoader, enclosingClassNames, nestedClassName);
 	}
 
@@ -726,9 +744,9 @@ public final class DiscoverySelectors {
 	@API(status = EXPERIMENTAL, since = "1.10")
 	public static NestedMethodSelector selectNestedMethod(ClassLoader classLoader, List<String> enclosingClassNames,
 			String nestedClassName, String methodName) throws PreconditionViolationException {
-		Preconditions.notEmpty(enclosingClassNames, "Enclosing class names must not be null or empty");
-		Preconditions.notBlank(nestedClassName, "Nested class name must not be null or blank");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
+		Preconditions.notEmpty(enclosingClassNames, ENCLOSING_CLASS_NAMES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notBlank(nestedClassName, NESTED_CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
 		return new NestedMethodSelector(classLoader, enclosingClassNames, nestedClassName, methodName, "");
 	}
 
@@ -776,9 +794,9 @@ public final class DiscoverySelectors {
 	public static NestedMethodSelector selectNestedMethod(ClassLoader classLoader, List<String> enclosingClassNames,
 			String nestedClassName, String methodName, String parameterTypeNames) {
 
-		Preconditions.notEmpty(enclosingClassNames, "Enclosing class names must not be null or empty");
-		Preconditions.notBlank(nestedClassName, "Nested class name must not be null or blank");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
+		Preconditions.notEmpty(enclosingClassNames, ENCLOSING_CLASS_NAMES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notBlank(nestedClassName, NESTED_CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
 		Preconditions.notNull(parameterTypeNames, "Parameter types must not be null");
 		return new NestedMethodSelector(classLoader, enclosingClassNames, nestedClassName, methodName,
 			parameterTypeNames.trim());
@@ -802,11 +820,11 @@ public final class DiscoverySelectors {
 	public static NestedMethodSelector selectNestedMethod(List<String> enclosingClassNames, String nestedClassName,
 			String methodName, Class<?>... parameterTypes) {
 
-		Preconditions.notEmpty(enclosingClassNames, "Enclosing class names must not be null or empty");
-		Preconditions.notBlank(nestedClassName, "Nested class name must not be null or blank");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
-		Preconditions.notNull(parameterTypes, "Parameter types array must not be null");
-		Preconditions.containsNoNullElements(parameterTypes, "Parameter types array must not contain null elements");
+		Preconditions.notEmpty(enclosingClassNames, ENCLOSING_CLASS_NAMES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notBlank(nestedClassName, NESTED_CLASS_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notNull(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_BE_NULL);
+		Preconditions.containsNoNullElements(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_CONTAIN_NULL_ELEMENTS);
 		return new NestedMethodSelector((ClassLoader) null, enclosingClassNames, nestedClassName, methodName,
 			parameterTypes);
 	}
@@ -848,9 +866,9 @@ public final class DiscoverySelectors {
 	public static NestedMethodSelector selectNestedMethod(List<Class<?>> enclosingClasses, Class<?> nestedClass,
 			String methodName, String parameterTypeNames) {
 
-		Preconditions.notEmpty(enclosingClasses, "Enclosing classes must not be null or empty");
-		Preconditions.notNull(nestedClass, "Nested class must not be null");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
+		Preconditions.notEmpty(enclosingClasses, ENCLOSING_CLASSES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notNull(nestedClass, NESTED_CLASS_MUST_NOT_BE_NULL);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
 		Preconditions.notNull(parameterTypeNames, "Parameter types must not be null");
 		return new NestedMethodSelector(enclosingClasses, nestedClass, methodName, parameterTypeNames.trim());
 	}
@@ -872,11 +890,11 @@ public final class DiscoverySelectors {
 	public static NestedMethodSelector selectNestedMethod(List<Class<?>> enclosingClasses, Class<?> nestedClass,
 			String methodName, Class<?>... parameterTypes) {
 
-		Preconditions.notEmpty(enclosingClasses, "Enclosing classes must not be null or empty");
-		Preconditions.notNull(nestedClass, "Nested class must not be null");
-		Preconditions.notBlank(methodName, "Method name must not be null or blank");
-		Preconditions.notNull(parameterTypes, "Parameter types array must not be null");
-		Preconditions.containsNoNullElements(parameterTypes, "Parameter types array must not contain null elements");
+		Preconditions.notEmpty(enclosingClasses, ENCLOSING_CLASSES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notNull(nestedClass, NESTED_CLASS_MUST_NOT_BE_NULL);
+		Preconditions.notBlank(methodName, METHOD_NAME_MUST_NOT_BE_NULL_OR_BLANK);
+		Preconditions.notNull(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_BE_NULL);
+		Preconditions.containsNoNullElements(parameterTypes, PARAMETER_TYPES_ARRAY_MUST_NOT_CONTAIN_NULL_ELEMENTS);
 		return new NestedMethodSelector(enclosingClasses, nestedClass, methodName, parameterTypes);
 	}
 
@@ -893,8 +911,8 @@ public final class DiscoverySelectors {
 	public static NestedMethodSelector selectNestedMethod(List<Class<?>> enclosingClasses, Class<?> nestedClass,
 			Method method) {
 
-		Preconditions.notEmpty(enclosingClasses, "Enclosing classes must not be null or empty");
-		Preconditions.notNull(nestedClass, "Nested class must not be null");
+		Preconditions.notEmpty(enclosingClasses, ENCLOSING_CLASSES_MUST_NOT_BE_NULL_OR_EMPTY);
+		Preconditions.notNull(nestedClass, NESTED_CLASS_MUST_NOT_BE_NULL);
 		Preconditions.notNull(method, "Method must not be null");
 		return new NestedMethodSelector(enclosingClasses, nestedClass, method);
 	}
